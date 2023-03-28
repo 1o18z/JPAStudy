@@ -28,5 +28,8 @@ public class Member {
         this.name = name;
     }
 
-
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
