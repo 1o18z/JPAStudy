@@ -1,17 +1,85 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
-@Entity // 이걸 넣어야 JPA를 사용한다는 걸 인식
-// 만약 데이터베이스에 Member가 아닌 다른 이름(예를 들어 USER)이라면 아래처럼 추가
-// @Table(name = "USER")
+@Entity
 public class Member {
 
     @Id
     private Long id;
-    // 컬럼 이름이 DB와 다르면 @Column(name="username") 이런 식으로 추가!
-    private String name;
+
+    @Column(name = "name", nullable = false)
+    private String username;
+    private Integer age;
+
+    @Enumerated()
+    private RoleType roleType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    @Lob
+    private String description;
+
+    @Transient
+    private int temp;
+
+    public Member() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public RoleType getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -20,16 +88,4 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Member(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }
